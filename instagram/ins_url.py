@@ -20,12 +20,13 @@ def load_config():
     password = config["login"]["password"]
     keywords = config["keywords"]
     iter = config["iter"]
+    user_agent = config["headers"]["user-agent"]
 
-    return username, password, keywords, iter
+    return username, password, keywords, iter, user_agent
 
 
 def main():
-    user_id, password, keywords, iter = load_config()
+    user_id, password, keywords, iter, user_agent = load_config()
     driver = webdriver.Chrome()
 
     # 한국 표준시 설정
@@ -33,11 +34,9 @@ def main():
     current_time = datetime.now(kst)
     current_datetime = current_time.strftime("%Y%m%d_%H%M%S")
 
-    csv_path = "/Users/baekkwanghyun/Desktop/Projects/5.Viral/urls/url.csv"  # 기존에 저장되어 있던 url
-    new_csv_path = (
-        "/Users/baekkwanghyun/Desktop/Projects/5.Viral/urls/new_url_{}.csv".format(
-            current_datetime
-        )
+    csv_path = "./urls/url.csv"  # 기존에 저장되어 있던 url
+    new_csv_path = "./urls/new_url_{}.csv".format(
+        current_datetime
     )  # 이번에 새로 모이는 데이터들
 
     # 기존 CSV 파일이 없으면 새로 생성
@@ -52,7 +51,7 @@ def main():
         print(f"새로운 CSV 파일 생성: {new_csv_path}")
 
     # 백업 파일 하나 생성
-    back_up = "/Users/baekkwanghyun/Desktop/Projects/5.Viral/urls/url_backup.csv"
+    back_up = "./urls/url_backup.csv"
     shutil.copyfile(csv_path, back_up)
 
     Data_List = []  # 데이터 저장 리스트

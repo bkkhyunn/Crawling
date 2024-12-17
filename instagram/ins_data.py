@@ -19,19 +19,17 @@ def load_config():
     password = config["login"]["password"]
     keywords = config["keywords"]
     iter = config["iter"]
+    user_agent = config["headers"]["user-agent"]
 
-    return username, password, keywords, iter
+    return username, password, keywords, iter, user_agent
 
 
 def main():
-    user_id, password, keywords, iter = load_config()
-    headers = {
-        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
-    }
+    user_id, password, keywords, iter, user_agent = load_config()
 
     # 최초에는 url 이 new_url 이기 때문에 new_url.csv 에 아무런 내용이 없으니, url.csv 로 데이터 수집 해야함.
-    # initial_csv = '/Users/baekkwanghyun/Desktop/Projects/5.Viral/urls/url.csv'
-    folder_path = "/Users/baekkwanghyun/Desktop/Projects/5.Viral/urls"
+    # initial_csv = './url/url.csv'
+    folder_path = "./urls/"
     file_pattern = os.path.join(folder_path, "new_url*.csv")
     files = glob.glob(file_pattern)
 
@@ -47,7 +45,7 @@ def main():
     )
 
     # 최종 데이터가 될 results
-    results = "/Users/baekkwanghyun/Desktop/Projects/5.Viral/results/data.csv"
+    results = "./results/data.csv"
     # 기존 CSV 파일이 없으면 새로 생성
     if not os.path.exists(results):
         df = pd.DataFrame(
@@ -79,7 +77,7 @@ def main():
     )
 
     # 백업 파일 하나 생성
-    back_up = "/Users/baekkwanghyun/Desktop/Projects/5.Viral/results/data_backup.csv"
+    back_up = "./results/data_backup.csv"
     shutil.copyfile(results, back_up)
 
     Data_List = []  # 데이터 저장 리스트
@@ -221,7 +219,7 @@ def main():
                     continue
 
                 if img_name not in saved_imgs:
-                    response = requests.get(img_url, headers=headers, timeout=20)
+                    response = requests.get(img_url, headers=user_agent, timeout=20)
 
                     with open(
                         "/Users/baekkwanghyun/Desktop/Projects/5.Viral/results/images/"
