@@ -15,7 +15,7 @@ def main():
 
     args = parser.parse_args()
 
-    # onfig.json
+    # config.json
     with open(args.config, "r", encoding="utf-8") as f:
         config = json.load(f)
 
