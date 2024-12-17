@@ -1,15 +1,4 @@
-## ins_crawl_ocr
+## Crawling
 
-- instagram 대상 크롤링 후 이미지 ocr
-- pyenv + poetry 사용
-
-```
-ins_crawl_ocr
-├── config.json      # 로그인 정보(id, pw), search keyword, 반복횟수
-├── ins_url.py       # url 수집
-├── ins_data.py      # 수집된 url 을 가지고 크롤링
-├── make_ocr_text.py # 수집된 이미지 대상으로 ocr
-├── results
-├── urls
-└── scrapper.ipynb   
-```
+- Crawling 코드 작성 모음
+- 수집 웹사이트 별 필요한 event(ex. 버튼 클릭) 등은 그때 그때 추가 필요

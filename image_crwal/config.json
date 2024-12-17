@@ -1,0 +1,11 @@
+{
+    "urls": [
+        "수집 대상 url"
+    ],
+    "keywords": [
+        "수집 대상 검색어"
+    ],
+    "headers": {
+        "user-agent" : "user-agent"
+    }
+}
